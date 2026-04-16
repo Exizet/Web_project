@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ "{{snt.name}}" - Фотогалерея</title>
+    <link rel="stylesheet" href="../css/galary.css">
+</head>
+
+<body>
+    <header>
+        <a href="/index?snt={{snt}}" class="logo">СНТ "{{snt.name}}"</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/announcement/?snt_id={{snt.id}}">Объявления</a></li>
+                <li><a href="/dibates/?snt_id={{snt.id}}">Голосования</a></li>
+                <!--<li><a href="kontact.html">Контакты</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade/?snt_id={{snt.id}}" class="account">Личный кабинет</a></li>
+                    <li><a href="/about/?snt_id={{snt.id}}" class="we">О нас</a></li>
+                    <li><a href="/governance/?snt_id={{snt.id}}">Правление</a></li>
+                    <li><a href="/galery/?snt_id={{snt.id}}">Фотогалерея</a></li>
+                    <li><a href="/documents/?snt_id={{snt.id}}">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus/?snt_id={{snt.id}}">Автобусов</a></li>
+                            <li><a class="water" href="/water/?snt_id={{snt.id}}">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time/?snt_id={{snt.id}}">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme/?snt_id={{snt.id}}">Схема участков</a></li>
+                    <li><a href="/fire-safety/?snt_id={{snt.id}}">Пожарная безопасность</a></li>
+                    <li><a href="/map/?snt_id={{snt.id}}" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    <h2>Название альбома {{album_title}}</h2>
+
+                    <div class="gallery-container">
+                        <!-- Альбом 1 -->
+                        {% for photo in photos %}
+                            <div class="album-folder">
+                                <div class="folder-cover">
+                                    <img src="{{photo.image_path}}" alt="{{photo.name}}">
+                                    <span class="new-badge">Новое</span>
+                                </div>
+                                <div class="folder-info">
+                                    <h3>{{photo.name}}</h3>
+                                    <div class="folder-meta">
+                                        <span>15.05.2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ {{snt.name}} - Правление</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .board-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .member-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-card h3 {
+            color: #2c5e1a;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .member-position {
+            font-weight: bold;
+            color: #4a7a2f;
+            margin-bottom: 5px;
+        }
+        
+        .member-contact {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .member-street {
+            background: #e8f4e1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/home/" class="logo">СНТ "{{snt.name}}"</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/announcement/">Объявления</a></li>
+                <li><a href="/dibates/">Голосования</a></li>
+                <!--<li><a href="kontact.html">Контакты</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade/" class="account">Личный кабинет</a></li>
+                    <li><a href="/about/" class="we">О нас</a></li>
+                    <li><a href="/governance/">Правление</a></li>
+                    <li><a href="/galery/">Фотогалерея</a></li>
+                    <li><a href="/documents/">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus/">Автобусов</a></li>
+                            <li><a class="water" href="/water/">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time/">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme/">Схема участков</a></li>
+                    <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+                    <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    <h2>Члены нашего правления</h2>
+                    <p>Наше правление состоит из опытных садоводов, которые добровольно взяли на себя ответственность за управление делами товарищества.</p>
+                    
+                    <div class="board-members">
+                        {% for contact in contacts %}
+                            <div class="member-card">
+                                <h3>{{contact.name}}</h3>
+                                <div class="member-position">{{contact.title}}</div>
+                                <p>{{contact.description}}</p>
+                                <div class="member-contact">
+                                    Телефон: {{contact.phone}}<br>
+                                    Email: {{contact.email}}<br>
+                                    {% if contact.time_contact != None %}
+                                        Часы приема: {{contact.time_contact}}
+                                    {% endif %}
+                                </div>
+                                <div class="member-street">
+                                    {% if contact.responsible != None %}
+                                        {{contact.responsible}}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title id="verificate">Вход в аккаунт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            object-fit: cover;
+            background: url("../assets/back2.jpg") no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-content {
+            width: auto;
+            height: auto;
+            margin: 10px 130px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-info {
+            width: 60%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 5px 10px #000000;
+        }
+
+        .form-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .form-container button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #6ad000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #5bb700;
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .toggle-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .toggle-link a:hover {
+            text-decoration: underline;
+        }
+
+        #loginForm {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-top: 15px;
+        }
+
+        #loginForm input {
+            margin-bottom: 15px;
+        }
+
+        #loginForm button {
+            margin-top: 10px;
+        }
+
+        #registrationForm {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-top: 15px;
+        }
+
+        #registrationForm input {
+            margin-bottom: 15px;
+        }
+
+        #registrationForm button {
+            margin-top: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-info {
+                width: 90%;
+            }
+            .main-content {
+                margin: 10px 20px;
+            }
+        }
+
+        .in_goust {
+            margin-top: 2%;
+        }
+
+        .in_goustLink {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .in_goustLink:active,
+        .in_goustLink:visited {
+            color: #007bff;
+        }
+
+        #formTitle {
+            margin-bottom: 3%;
+        }
+
+        #toggleFormLink {
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <div class="main-info">
+                <h2 id="formTitle">Вход</h2>
+
+                <form class="form-container" id="loginForm">
+                    <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
+                    <input type="password" name="password" placeholder="Ваш пароль" required>
+                    <div id="loginError" class="error-message" style="display: none;"></div>
+                    <button type="submit">Войти</button>
+                </form>
+
+                <form class="form-container" id="registrationForm" style="display: none;">
+                    <input type="text" name="username" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
+                    <input type="text" name="community" placeholder="Ваше СНТ" required>
+                    <input type="text" name="email" placeholder="Ваш E-mail">
+                    <input type="text" name="region" placeholder="Ваш номер участка" required>
+                    <input type="password" name="password" placeholder="Ваш пароль" required>
+                    <input type="password" name="confirm_password" placeholder="Подтвердите пароль" required>
+                    <div id="registerError" class="error-message" style="display: none;"></div>
+                    <button type="submit">Зарегистрироваться</button>
+                </form>
+
+                <div class="toggle-link">
+                    <span id="toggleText">Нет аккаунта? <a href="javascript:void(0);" id="toggleFormLink">Зарегистрироваться</a></span>
+                </div>
+
+                <div class="in_goust">
+                    <a class="in_goustLink" href="indexNoVerificate.html">Войти как гость</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Существующий код обработки входа
+            const loginForm = document.getElementById('loginForm');
+            loginForm?.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                await handleLogin();
+            });
+
+            async function handleLogin() {
+                const formData = new FormData(loginForm);
+                const errorElement = document.getElementById('loginError') || createErrorElement();
+
+                try {
+                    // 1. Получаем токен
+                    const authResponse = await fetch('/autorisation/token', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams({
+                            username: formData.get('phone'),
+                            password: formData.get('password'),
+                            grant_type: 'password'
+                        })
+                    });
+
+                    if (!authResponse.ok) {
+                        const error = await authResponse.json().catch(() => null);
+                        throw new Error(error?.detail || 'Ошибка авторизации');
+                    }
+
+                    const { access_token, token_type } = await authResponse.json();
+
+                    // 2. Сохраняем токен ДВУМЯ способами:
+                    // - В sessionStorage для JS
+                    sessionStorage.setItem('auth_token', access_token);
+                    // - В cookie для сервера
+                    document.cookie = `auth_token=${access_token}; path=/; max-age=1200; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`;
+
+                    // 3. Проверяем токен
+                    const testResponse = await fetch('/home/test_token', {
+                        headers: {
+                            'Authorization': `${token_type} ${access_token}`
+                        }
+                    });
+
+                    if (!testResponse.ok) throw new Error('Ошибка проверки токена');
+
+                    // 4. Перенаправляем с токеном в URL (временно для дебага)
+                    window.location.href = `/home/`;
+
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    errorElement.textContent = error.message;
+                    errorElement.style.display = 'block';
+                }
+            }
+
+            function createErrorElement() {
+                const div = document.createElement('div');
+                div.id = 'loginError';
+                div.style.color = 'red';
+                div.style.margin = '10px 0';
+                loginForm.appendChild(div);
+                return div;
+            }
+
+            // Новый код для переключения форм и регистрации
+            const toggleFormLink = document.getElementById('toggleFormLink');
+            const registrationForm = document.getElementById('registrationForm');
+            const formTitle = document.getElementById('formTitle');
+            const toggleText = document.getElementById('toggleText');
+
+            // Обработчик переключения между формами
+            toggleFormLink.addEventListener('click', function() {
+                if (loginForm.style.display === 'none') {
+                    // Переключаем на форму входа
+                    loginForm.style.display = 'block';
+                    registrationForm.style.display = 'none';
+                    formTitle.textContent = 'Вход';
+                    toggleText.innerHTML = 'Нет аккаунта? <a href="javascript:void(0);" id="toggleFormLink">Зарегистрироваться</a>';
+                } else {
+                    // Переключаем на форму регистрации
+                    loginForm.style.display = 'none';
+                    registrationForm.style.display = 'block';
+                    formTitle.textContent = 'Регистрация';
+                    toggleText.innerHTML = 'Уже есть аккаунт? <a href="javascript:void(0);" id="toggleFormLink">Войти</a>';
+                }
+
+                // Обновляем обработчик после изменения DOM
+                document.getElementById('toggleFormLink').addEventListener('click', arguments.callee);
+            });
+
+            // Обработчик формы регистрации
+            registrationForm?.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                await handleRegistration();
+            });
+
+            async function handleRegistration() {
+                const formData = new FormData(registrationForm);
+                const errorElement = document.getElementById('registerError');
+
+                // Проверка совпадения паролей
+                if (formData.get('password') !== formData.get('confirm_password')) {
+                    errorElement.textContent = 'Пароли не совпадают';
+                    errorElement.style.display = 'block';
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/autorisation/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: formData.get('username'),
+                            phone: formData.get('phone'),
+                            snt: formData.get('community'),
+                            email: formData.get('email'),
+                            site_number: formData.get('region'),
+                            password: formData.get('password')
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const error = await response.json().catch(() => null);
+                        throw new Error(error?.detail || 'Ошибка регистрации');
+                    }
+
+                    const result = await response.json();
+
+                    // После успешной регистрации переключаем на форму входа
+                    loginForm.style.display = 'block';
+                    registrationForm.style.display = 'none';
+                    formTitle.textContent = 'Вход';
+                    toggleText.innerHTML = 'Нет аккаунта? <a href="javascript:void(0);" id="toggleFormLink">Зарегистрироваться</a>';
+
+                // Очищаем поля регистрации
+                registrationForm.reset();
+
+                // Показываем сообщение об успехе (можно добавить div для успешных сообщений)
+                errorElement.textContent = 'Регистрация прошла успешно! Теперь вы можете войти.';
+                errorElement.style.color = 'green';
+                errorElement.style.display = 'block';
+
+            } catch (error) {
+                console.error('Ошибка регистрации:', error);
+                errorElement.textContent = error.message;
+                errorElement.style.color = 'red';
+                errorElement.style.display = 'block';
+            }
+        }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ {{snt.name}} - О нас</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Стили для блока main-info */
+        .main-info {
+            background-color: #ffffff;
+            /* Белый фон */
+            padding: 20px;
+            /* Отступы внутри блока */
+            border-radius: 8px;
+            /* Закругленные углы */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Тень для выделения */
+            margin-bottom: 20px;
+            /* Отступ снизу */
+            font-size: 16px;
+            /* Размер шрифта */
+            color: #333;
+            /* Цвет текста */
+        }
+
+        /* Стили для заголовков внутри .main-info */
+        .main-info h2 {
+            font-size: 32px;
+            color: rgb(109,109,109);
+            margin-bottom: 15px;
+            text-align: center;
+            /* Выравнивание заголовка по центру */
+        }
+
+        .main-info h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+            border-bottom: 2px solid #4CAF50;
+            /* Линия под заголовком */
+            padding-bottom: 5px;
+        }
+
+        /* Стили для параграфов внутри .main-info */
+        .main-info p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+            /* Выравнивание текста по ширине */
+        }
+
+        /* Стили для списков внутри .main-info */
+        .main-info ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .main-info ul li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Добавление отступов между абзацами */
+        .main-info section {
+            margin-bottom: 20px;
+        }
+
+        /* Стили для ссылок внутри .main-info */
+        .main-info a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .main-info a:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        /* Мобильные стили для уменьшенных экранов */
+        @media (max-width: 768px) {
+            .main-info {
+                padding: 15px;
+                /* Уменьшаем отступы для мобильных */
+            }
+
+            .main-info h2 {
+                font-size: 28px;
+                /* Меньший размер заголовка */
+            }
+
+            .main-info h3 {
+                font-size: 20px;
+                /* Меньший размер для подзаголовков */
+            }
+
+            .main-info p {
+                font-size: 14px;
+                /* Меньший размер текста для мобильных */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/home/" class="logo">СНТ "{{snt.name}}"</a>
+
+        <nav class="navbar">
+            <ul>
+                <!--<li><a href="news.html">Новости</a></li>-->
+                <li><a href="/announcement/">Объявления</a></li>
+                <li><a href="/dibates/">Голосования</a></li>
+                <!--<li><a href="kontact.html">Контакты</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade/" class="account">Личный кабинет</a></li>
+                    <li><a href="/about/" class="we">О нас</a></li>
+                    <li><a href="/governance/">Правление</a></li>
+                    <!--<li><a href="tariff_plan.html">Тарифный план на 2023 год</a></li>-->
+                    <!--<li><a href="kontact.html">Контакты</a></li>-->
+                    <li><a href="/galery/">Фотогалерея</a></li>
+                    <li><a href="/documents/">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus/">Автобусов</a></li>
+                            <li><a class="water" href="/water/">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time/">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme/">Схема участков</a></li>
+                    <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+                    <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    {{snt.description}}
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

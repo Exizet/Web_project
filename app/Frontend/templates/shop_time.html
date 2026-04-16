@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>СНТ "{{snt.name}}" - Расписание работы магазина</title>
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* Стили для main-content */
+    
+
+   
+
+    h2 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Стили для таблицы */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th,
+    table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    table td {
+      background-color: #ecf0f1;
+    }
+
+    table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main-info {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="/home/" class="logo">СНТ "{{snt.name}}"</a>
+    </div>
+
+    <nav class="navbar">
+      <ul>
+        <li><a href="/announcement/">Объявления</a></li>
+        <li><a href="/dibates/">Голосования</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="main-content" id="mainContent">
+      <nav class="navbar-left">
+        <ul class="siderbar-left">
+          <li><a href="/verificade/" class="account">Личный кабинет</a></li>
+          <li><a href="/about/" class="we">О нас</a></li>
+          <li><a href="/governance/">Правление</a></li>
+          <li><a href="/galery/">Фотогалерея</a></li>
+          <li><a href="/documents/">Сметы расходов</a></li>
+          <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+            <ul>
+              <li><a class="bus" href="/bus/">Автобусов</a></li>
+              <li><a class="water" href="/water/">Подачи воды</a></li>
+              <li><a class="shop_time" href="/shop_time/">Работы магазина</a></li>
+            </ul>
+          </li>
+          <li><a href="/scheme/">Схема участков</a></li>
+          <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+          <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+        </ul>
+      </nav>
+
+      <div class="main-info">
+        <section>
+          <h2>Расписание работы магазина</h2>
+          <p>Наш магазин работает по следующему графику:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>День недели</th>
+                <th>Часы работы</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Понедельник</td>
+                <td>09:00 - 18:00</td>
+              </tr>
+              <tr>
+                <td>Вторник</td>
+                <td>09:00 - 18:00</td>
+              </tr>
+              <tr>
+                <td>Среда</td>
+                <td>09:00 - 18:00</td>
+              </tr>
+              <tr>
+                <td>Четверг</td>
+                <td>09:00 - 18:00</td>
+              </tr>
+              <tr>
+                <td>Пятница</td>
+                <td>09:00 - 18:00</td>
+              </tr>
+              <tr>
+                <td>Суббота</td>
+                <td>10:00 - 16:00</td>
+              </tr>
+              <tr>
+                <td>Воскресенье</td>
+                <td>Выходной</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script src="js/script.js" defer></script>
+</body>
+
+</html>

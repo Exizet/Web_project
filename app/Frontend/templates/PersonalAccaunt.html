@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ {{snt.name}} - Личный кабинет</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .content {
+            flex-grow: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: flex-start; /* Выравниваем элементы по верхнему краю */
+            gap: 20px; /* Расстояние между фото и блоком user-info */
+            margin-bottom: 30px; /* Отступ снизу */
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px; /* Закругленные углы для фото */
+            object-fit: cover; /* Чтобы фото не искажалось */
+            flex-shrink: 0; /* Запрещаем сжатие фото */
+        }
+
+        .user-info {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Фиксированная ширина */
+            flex-shrink: 0; /* Запрещаем сжатие блока */
+            margin-left: auto; /* Прилепляем к правому краю */
+        }
+
+        .user-info h3 {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .user-info p {
+            margin-bottom: 10px;
+            color: #777;
+            display: flex;
+            justify-content: space-between; /* Выравниваем текст и значения по краям */
+        }
+
+        .user-info p strong {
+            margin-right: 10px; /* Отступ между текстом и значением */
+        }
+
+        @media screen and (max-width: 768px) {
+            .profile-section {
+                flex-direction: column; /* На мобильных фото и user-info в столбик */
+                align-items: center; /* Центрируем элементы */
+            }
+
+            .profile-photo {
+                margin-bottom: 15px; /* Отступ между фото и user-info на мобильных */
+            }
+
+            .user-info {
+                width: 100%; /* На мобильных user-info занимает всю ширину */
+                margin-left: 0; /* Убираем отступ слева */
+            }
+        }
+
+        .notifications ul,
+        .payment-history ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notifications ul li,
+        .payment-history ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .notifications ul li:last-child,
+        .payment-history ul li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/index/" class="logo">СНТ {{snt.name}}</a>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="/announcement/">Объявления</a></li>
+                <li><a href="/dibates/">Голосования</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade/" class="account">Личный кабинет</a></li>
+                    <li><a href="/about/" class="we">О нас</a></li>
+                    <li><a href="/governance/">Правление</a></li>
+                    <li><a href="/galery/">Фотогалерея</a></li>
+                    <li><a href="/documents/">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus/">Автобусов</a></li>
+                            <li><a class="water" href="/water/">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time/">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme/">Схема участков</a></li>
+                    <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+                    <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <!-- Основной контент -->
+            <div class="content">
+                <h2>Личный кабинет</h2>
+
+                <!-- Блок с фото и информацией -->
+                <div class="profile-section">
+                    <img src="../src/wrx.jpg" alt="Фото профиля" class="profile-photo" width="300px" height="300px">
+
+                    <!-- Информация о пользователе -->
+                    <section id="user-info" class="user-info">
+                        <h3>Мой профиль</h3>
+                        <p><strong>Имя:</strong> {{user.name}}</p>
+                        <p><strong>Телефон:</strong> {{user.phone}}</p>
+                        <p><strong>Участок:</strong> {{user.site_number}}</p>
+                        <p><strong>СНТ:</strong> {{snt.name}}</p>
+                    </section>
+                </div>
+
+                <!-- История платежей -->
+                <section id="payment-history" class="payment-history">
+                    <h3>История платежей</h3>
+                    <ul>
+                        <li><strong>Октябрь 2023:</strong> 5000 руб. (Оплачено)</li>
+                        <li><strong>Сентябрь 2023:</strong> 5000 руб. (Оплачено)</li>
+                        <li><strong>Август 2023:</strong> 5000 руб. (Оплачено)</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ "{{snt.name}}" - Объявления</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <a href="/home/" class="logo">СНТ "{{snt.name}}"</a>
+    </div>
+
+
+
+    <nav class="navbar">
+        <ul>
+            <!--<li><a href="news.html">Новости</a></li>-->
+            <li><a href="/announcement/}">Объявления</a></li>
+            <li><a href="/dibates/">Голосования</a></li>
+            <!--<li><a href="kontact.html">Контакты</a></li>-->
+        </ul>
+    </nav>
+
+</header>
+
+<main class="main">
+    <div class="main-content" id="mainContent">
+        <nav class="navbar-left">
+            <ul class="siderbar-left">
+                <li><a href="/verificade/" class="account">Личный кабинет</a></li>
+                <li><a href="/about/" class="we">О нас</a></li>
+                <li><a href="/governance/">Правление</a></li>
+                <!--<li><a href="tariff_plan.html">Тарифный план на 2023 год</a></li>-->
+                <!--<li><a href="kontact.html">Контакты</a></li>-->
+                <li><a href="/galery/">Фотогалерея</a></li>
+                <li><a href="/documents/">Сметы расходов</a></li>
+                <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                    <ul>
+                        <li><a class="bus" href="/bus/">Автобусов</a></li>
+                        <li><a class="water" href="/water/">Подачи воды</a></li>
+                        <li><a class="shop_time" href="/shop_time/">Работы магазина</a></li>
+                    </ul>
+                </li>
+                <li><a href="/scheme/">Схема участков</a></li>
+                <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+                <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+            </ul>
+        </nav>
+
+        {%for announce in announcement %}
+            <div class="main-info">
+                <section>
+                    <h2>{{announce.name}} </h2>
+                    <p>
+                        {{announce.description}}
+                    </p>
+                </section>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+<script src="js/script.js" defer></script>
+</body>
+</html>

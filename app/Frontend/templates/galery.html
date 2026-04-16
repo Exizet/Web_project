@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ "{{snt.name}}" - Фотогалерея</title>
+    <link rel="stylesheet" href="../css/galary.css">
+</head>
+
+<body>
+    <header>
+        <a href="/home/" class="logo">СНТ "{{snt.name}}"</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/announcement/">Объявления</a></li>
+                <li><a href="/dibates/">Голосования</a></li>
+                <!--<li><a href="kontact.html">Контакты</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade/" class="account">Личный кабинет</a></li>
+                    <li><a href="/about/" class="we">О нас</a></li>
+                    <li><a href="/governance/">Правление</a></li>
+                    <li><a href="/galery/">Фотогалерея</a></li>
+                    <li><a href="/documents/">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus/">Автобусов</a></li>
+                            <li><a class="water" href="/water/">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time/">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme/">Схема участков</a></li>
+                    <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+                    <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    <h2>Фотогалерея</h2>
+                    <p>Альбомы с фотографиями мероприятий и жизни СНТ "{{snt.name}}".</p>
+                    
+                    <div class="gallery-container">
+                        <!-- Альбом 1 -->
+                        {% for album in albums %}
+                            <div class="album-folder" onclick="location.href='/galery/{{album.id}}/'">
+                                <div class="folder-cover">
+                                    <img src="/src/home.png" alt="Субботник">
+                                    <span class="new-badge">Новое</span>
+                                </div>
+                                <div class="folder-info">
+                                    <h3>{{album.name}}</h3>
+                                    <div class="folder-meta">
+                                        <span>{{album.photos_count}}</span>
+                                        <span>15.05.2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+</html>

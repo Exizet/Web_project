@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление участниками | Панель модератора СНТ</title>
+    <style>
+        :root {
+            --primary-color: #2c8a5a;
+            --secondary-color: #f8f9fa;
+            --accent-color: #e9c46a;
+            --dark-color: #264653;
+            --light-color: #ffffff;
+            --danger-color: #e76f51;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1.5rem 0;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar li a {
+            display: block;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .sidebar li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .sidebar li a.active {
+            background-color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .sidebar li a i {
+            margin-right: 0.8rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-title i {
+            margin-right: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #24744a;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-title {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--dark-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: var(--secondary-color);
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .badge-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        form {
+            padding: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .form-group {
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">СНТ "...."</a>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> На сайт</a></li>
+                <li><a href="#" class="active"><i class="fas fa-user-shield"></i> Модератор</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
+                <li><a href="announcements.html"><i class="fas fa-bullhorn"></i> Объявления</a></li>
+                <li><a href="members.html" class="active"><i class="fas fa-users"></i> Участники</a></li>
+                <li><a href="payments.html"><i class="fas fa-file-invoice-dollar"></i> Взносы</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title"><i class="fas fa-users"></i> Управление участниками</h1>
+                <a href="#" class="btn"><i class="fas fa-plus"></i> Добавить участника</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Список участников</h2>
+                    <div class="form-group" style="margin-bottom: 0; width: 300px;">
+                        <input type="text" class="form-control" placeholder="Поиск по участникам...">
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>№ участка</th>
+                            <th>ФИО</th>
+                            <th>Телефон</th>
+                            <th>Email</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>42</td>
+                            <td>Иванов Петр Сергеевич</td>
+                            <td>+7 (912) 345-67-89</td>
+                            <td>ivanov@example.com</td>
+                            <td><span class="badge badge-success">Активен</span></td>
+                            <td>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-envelope"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Петрова Анна Владимировна</td>
+                            <td>+7 (923) 456-78-90</td>
+                            <td>petrova@example.com</td>
+                            <td><span class="badge badge-success">Активен</span></td>
+                            <td>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-envelope"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td>Сидоров Василий Петрович</td>
+                            <td>+7 (934) 567-89-01</td>
+                            <td>sidorov@example.com</td>
+                            <td><span class="badge badge-warning">Не подтвержден</span></td>
+                            <td>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-check"></i></a>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; background-color: var(--danger-color);"><i class="fas fa-times"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Кузнецова Елена Михайловна</td>
+                            <td>+7 (945) 678-90-12</td>
+                            <td>kuznetsova@example.com</td>
+                            <td><span class="badge badge-danger">Заблокирован</span></td>
+                            <td>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-unlock"></i></a>
+                                <a href="#" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fas fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Добавить нового участника</h2>
+                </div>
+                
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" class="form-control" placeholder="Введите фамилию">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" class="form-control" placeholder="Введите имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Отчество</label>
+                        <input type="text" class="form-control" placeholder="Введите отчество">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Номер участка</label>
+                        <input type="text" class="form-control" placeholder="Введите номер участка">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" class="form-control" placeholder="Введите телефон">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="Введите email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" class="form-control" placeholder="Введите пароль">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Статус</label>
+                        <select class="form-control">
+                            <option>Активен</option>
+                            <option>Не подтвержден</option>
+                            <option>Заблокирован</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn"><i class="fas fa-save"></i> Сохранить</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

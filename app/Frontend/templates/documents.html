@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ {{snt.name}} - Сметы расходов</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .documents-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .document-folder {
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .document-folder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: #a5d6a7;
+        }
+        
+        .folder-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .folder-icon {
+            font-size: 32px;
+            color: #2e7d32;
+            margin-right: 15px;
+        }
+        
+        .folder-title {
+            font-size: 18px;
+            color: #2e7d32;
+            margin: 0;
+        }
+        
+        .folder-year {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .document-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .document-item {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .document-item:last-child {
+            border-bottom: none;
+        }
+        
+        .document-name {
+            color: #333;
+        }
+        
+        .document-download {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .document-download:hover {
+            text-decoration: underline;
+        }
+        
+        .archive-notice {
+            margin-top: 30px;
+            padding: 15px;
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/home/" class="logo">СНТ "{{snt.name}}"</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/announcement">Объявления</a></li>
+                <li><a href="/dibates">Голосования</a></li>
+                <!--<li><a href="kontact.html">Контакты</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade" class="account">Личный кабинет</a></li>
+                    <li><a href="/Description_SNT" class="we">О нас</a></li>
+                    <li><a href="/governance">Правление</a></li>
+                    <li><a href="/galery">Фотогалерея</a></li>
+                    <li><a href="/documents">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus">Автобусов</a></li>
+                            <li><a class="water" href="/water">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme/">Схема участков</a></li>
+                    <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+                    <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    <h2>Сметы расходов СНТ "{{snt.name}}"</h2>
+                    <p>Финансовые документы и сметы расходов за текущий и прошлые годы. Все файлы доступны для скачивания.</p>
+                    
+                    <div class="documents-container">
+                        <!-- Текущий год -->
+                        <div class="document-folder">
+                            <div class="folder-header">
+                                <div class="folder-icon">📁</div>
+                                <h3 class="folder-title">2025 год <span class="folder-year">Текущий</span></h3>
+                            </div>
+                            <ul class="document-list">
+                                <li class="document-item">
+                                    <span class="document-name">Годовая смета расходов</span>
+                                    <a href="../docs/2023/annual_estimate.pdf" class="document-download" download>Скачать</a>
+                                </li>
+                                <li class="document-item">
+                                    <span class="document-name">Отчет за 1 квартал</span>
+                                    <a href="../docs/2023/q1_report.pdf" class="document-download" download>Скачать</a>
+                                </li>
+                                <li class="document-item">
+                                    <span class="document-name">Отчет за 2 квартал</span>
+                                    <a href="../docs/2023/q2_report.pdf" class="document-download" download>Скачать</a>
+                                </li>
+                                <li class="document-item">
+                                    <span class="document-name">Смета на ремонт дорог</span>
+                                    <a href="../docs/2023/road_repair.pdf" class="document-download" download>Скачать</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Прошлый год -->
+                        <div class="document-folder">
+                            <div class="folder-header">
+                                <div class="folder-icon">📁</div>
+                                <h3 class="folder-title">2024 год</h3>
+                            </div>
+                            <ul class="document-list">
+                                <li class="document-item">
+                                    <span class="document-name">Годовая смета расходов</span>
+                                    <a href="../docs/2022/annual_estimate.pdf" class="document-download" download>Скачать</a>
+                                </li>
+                                <li class="document-item">
+                                    <span class="document-name">Итоговый отчет</span>
+                                    <a href="../docs/2022/final_report.pdf" class="document-download" download>Скачать</a>
+                                </li>
+                                <li class="document-item">
+                                    <span class="document-name">Смета на водоснабжение</span>
+                                    <a href="../docs/2022/water_supply.pdf" class="document-download" download>Скачать</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Архив -->
+                        <div class="document-folder">
+                            <div class="folder-header">
+                                <div class="folder-icon">🗃️</div>
+                                <h3 class="folder-title">Архив документов</h3>
+                            </div>
+                            <ul class="document-list">
+                                <li class="document-item">
+                                    <span class="document-name">2023 год</span>
+                                    <a href="../docs/archive/2021.zip" class="document-download" download>Скачать архив</a>
+                                </li>
+                                <li class="document-item">
+                                    <span class="document-name">2022 год</span>
+                                    <a href="../docs/archive/2020.zip" class="document-download" download>Скачать архив</a>
+                                </li>
+                                <li class="document-item">
+                                    <span class="document-name">2021 год</span>
+                                    <a href="../docs/archive/2019.zip" class="document-download" download>Скачать архив</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="archive-notice">
+                        <strong>Обратите внимание:</strong> Более старые документы (до 2021 года) доступны по запросу в правлении СНТ.
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+</html>

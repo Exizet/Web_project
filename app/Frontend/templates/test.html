@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ Обские просторы</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            object-fit: cover;
+            background: url("assets/back2.jpg") no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        header {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3%;
+            box-shadow: 0 5px 10px #000000;
+            margin-top: 10px;
+            margin-left: 130px;
+            margin-right: 130px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        header .logo {
+            font-size: 26px;
+            font-weight: 900;
+            color: #000000;
+            transition: 0.5s;
+        }
+
+        header .logo:hover {
+            transform: scale(1.2);
+        }
+
+        header nav ul li {
+            position: relative;
+            float: left;
+        }
+
+        header nav ul li a {
+            padding: 15px;
+            color: black;
+            font-size: 20px;
+            display: block;
+        }
+
+        header nav ul li a:hover {
+            background-color: #6ad000;
+            color: white;
+            transition: 0.5s;
+        }
+
+        /* MAIN *****************************/
+
+        .main-content {
+            width: auto;
+            height: auto;
+            background-color: white;
+            margin: 10px 130px;
+            border-radius: 10px;
+            display: flex;
+            box-shadow: 0 5px 10px #000000;
+        }
+
+        .navbar-left {
+            height: auto;
+        }
+
+        main nav ul li a {
+            padding: 15px;
+            font-size: 23px;
+            display: block;
+            background-color: #6ad000;
+            color: white;
+            margin-bottom: 0.8px;
+            width: 230px;
+        }
+
+        .we {
+            border-top-left-radius: 10px;
+        }
+
+        .map {
+            border-bottom-left-radius: 10px;
+            margin: 0;
+        }
+
+        main nav ul li ul li a {
+            border-left: 0.5px solid #ffffff;
+        }
+
+        main nav ul li ul li .bus {
+            margin-bottom: 1px;
+        }
+
+        nav ul ul {
+            position: absolute;
+            left: 230px;
+            width: 200px;
+            top: 0;
+            display: none;
+        }
+
+        nav ul .dropdown {
+            position: relative;
+        }
+
+        nav ul .dropdown:hover ul {
+            display: initial;
+        }
+
+        nav ul span {
+            position: absolute;
+            right: 20px;
+            bottom: 12px;
+            font-size: 1.5em;
+        }
+
+        .main-info {
+            height: auto;
+            width: 1159px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 10px 15px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .info {
+            height: auto;
+            width: 850px;
+        }
+
+        .info section {
+            padding-bottom: 30px;
+        }
+
+        main section h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 26px;
+            color: rgb(109, 109, 109);
+            padding: 30px;
+        }
+
+        main section img {
+            max-width: 100%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        main hr {
+            margin: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        main section p {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        main a img {
+            width: 60px;
+            height: 60px;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            header {
+                margin-left: 20px;
+                margin-right: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            header nav ul {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            header nav ul li {
+                width: 100%;
+                text-align: left;
+            }
+
+            header nav ul li a {
+                padding: 10px;
+                font-size: 18px;
+            }
+
+            .main-content {
+                margin: 10px 20px;
+                flex-direction: column;
+            }
+
+            .navbar-left {
+                width: 100%;
+            }
+
+            .main-info {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .main-info section {
+                padding-bottom: 20px;
+            }
+
+            main nav ul li a {
+                font-size: 20px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 18px;
+            }
+
+            header nav ul li a {
+                padding: 8px;
+                font-size: 16px;
+            }
+
+            .main-content {
+                margin: 10px;
+            }
+
+            .main-info {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .info {
+                width: 100%;
+            }
+
+            main section h2 {
+                font-size: 22px;
+            }
+
+            main section p {
+                font-size: 16px;
+            }
+
+            .navbar-left {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html" class="logo">СНТ "Обские просторы"</a>
+        </div>
+
+        <nav class="navbar">
+            <ul>
+                <!--<li><a href="news.html">Новости</a></li>-->
+                <li><a href="announcement.html">Объявления</a></li>
+                <li><a href="dibates.html">Голосования</a></li>
+                <li><a href="kontact.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="Description_SNT.html" class="we">О нас</a></li>
+                    <li><a href="governance.html">Правление</a></li>
+                    <!--<li><a href="tariff_plan.html">Тарифный план на 2023 год</a></li>-->
+                    <!--<li><a href="kontact.html">Контакты</a></li>-->
+                    <li><a href="galery.html">Фотогалерея</a></li>
+                    <li><a href="documents.html">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="bus.html">Автобусов</a></li>
+                            <li><a class="water" href="water.html">Подачи воды</a></li>
+                            <li><a class="shop_time" href="shop_time.html">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="scheme.html">Схема участков</a></li>
+                    <li><a href="fire-safety.html">Пожарная безопасность</a></li>
+                    <li><a href="map.html" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    <h2>Мы рады приветствовать </h2>
+                    <p>
+                       Приветственное письмо для пользователя садовода.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        
+    </script>
+</body>
+</html>

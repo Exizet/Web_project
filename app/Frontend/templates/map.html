@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ "Обские просторы" - Расположение</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .map-container {
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 500px;
+            height: 500px;
+            max-width: 100%;
+        }
+        
+        #googleMap {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .location-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+        }
+        
+        .info-item strong {
+            color: #2e7d32;
+        }
+        
+        .transport-links {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 500px;
+        }
+        
+        .transport-links a {
+            display: inline-block;
+            margin: 0 10px 10px;
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border: 1px solid #2e7d32;
+            border-radius: 4px;
+        }
+        
+        .transport-links a:hover {
+            background-color: #2e7d32;
+            color: white;
+        }
+        
+        .notice {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/home/" class="logo">СНТ "{{snt.name}}"</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/announcement/">Объявления</a></li>
+                <li><a href="/dibates/">Голосования</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade/" class="account">Личный кабинет</a></li>
+                    <li><a href="/about/" class="we">О нас</a></li>
+                    <li><a href="/governance/">Правление</a></li>
+                    <li><a href="/galery/">Фотогалерея</a></li>
+                    <li><a href="/documents/">Сметы расходов</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus/">Автобусов</a></li>
+                            <li><a class="water" href="/water/">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time/">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme/">Схема участков</a></li>
+                    <li><a href="/fire-safety/">Пожарная безопасность</a></li>
+                    <li><a href="/map/" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    <h2>Расположение СНТ "{{snt.name}}"</h2>
+                    <p style="text-align: center;">Наше садоводческое товарищество расположено в живописном месте с удобными подъездными путями.</p>
+                    
+                    <div class="map-container">
+                        <iframe id="googleMap"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2286.117924376056!2d82.84073531570278!3d55.27472608037615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDE2JzI5LjAiTiA4MsKwNTAnMzQuNSJF!5e0!3m2!1sru!2sru!4v1620000000000!5m2!1sru!2sru"
+                            allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                    
+                    <div class="location-info">
+                        <div class="info-item">
+                            <strong>Координаты:</strong> 55.274726, 82.842929
+                        </div>
+                        <div class="info-item">
+                            <strong>Адрес:</strong> Новосибирская область, [уточните район], СНТ "{{snt.name}}"
+                        </div>
+                        <div class="info-item">
+                            <strong>Расстояние от города:</strong> ~30 км от центра Новосибирска
+                        </div>
+                        
+                    </div>
+                    
+                    <h3 style="text-align: center;">Как добраться</h3>
+                    
+                    <div class="transport-links">
+                        <a href="/bus/">Расписание автобусов</a>
+                        <a href="/governance/">Контакты для связи</a>
+                    </div>
+                    
+                    <div class="notice">
+                        <p>При первом посещении рекомендуется связаться с правлением для получения точных указаний по проезду и встречи.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+</html>

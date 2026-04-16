@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>СНТ "Обские просторы" - Главная</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/index?snt={{snt}}" class="logo">СНТ "Обские просторы"</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-left">
+                <ul class="siderbar-left">
+                    <li><a href="/verificade?snt={{snt}}" class="account">Личный кабинет</a></li>
+                    <li><a href="/Description_SNT?snt={{snt}}" class="we">О нас</a></li>
+                    <li><a href="/governance?snt={{snt}}">Правление</a></li>
+                    <li><a href="/galery?snt={{snt}}">Фотогалерея</a></li>
+                    <li class="dropdown"><a href="#">Расписание <span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a class="bus" href="/bus?snt={{snt}}">Автобусов</a></li>
+                            <li><a class="water" href="/water?snt={{snt}}">Подачи воды</a></li>
+                            <li><a class="shop_time" href="/shop_time?snt={{snt}}">Работы магазина</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/scheme?snt={{snt}}">Схема участков</a></li>
+                    <li><a href="/fire-safety?snt={{snt}}">Пожарная безопасность</a></li>
+                    <li><a href="/map?snt={{snt}}" class="map" id="map"> Расположение </a></li>
+                </ul>
+            </nav>
+
+            <div class="main-info">
+                <section>
+                    <h2>Мы рады приветствовать вас в СНТ "Обские просторы"!</h2>
+                    <p>
+                         Здесь вы найдете не только уютные участки для выращивания своих любимых растений, но и поддержку от соседей и управления. Если у вас возникнут вопросы, не стесняйтесь обращаться, мы всегда готовы помочь.
+                    </p>
+                    <p>
+                        Для удобства мы предлагаем доступ к информации о важных событиях, расписаниях и документах через личный кабинет. Мы уверены, что ваше время в СНТ будет приятным и плодотворным!
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>
